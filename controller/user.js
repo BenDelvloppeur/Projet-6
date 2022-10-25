@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 
 import User from "../models/User.js";
 
-export function signup(req, res, next) {
+export const signup = (req, res, next) => {
   bcrypt
     .hash(req.body.password, 10)
     .then((hash) => {
@@ -19,7 +19,8 @@ export function signup(req, res, next) {
     .catch((error) => res.status(500).json({ error }));
 }
 
-export function login(req, res, next) {
+export const login = (req, res, next) => {
+  console.log("Login req", req);
   User.findOne({ email: req.body.email })
     .then((user) => {
       if (!user) {
@@ -43,4 +44,4 @@ export function login(req, res, next) {
     .catch((error) => res.status(500).json({ error }));
 }
 
-export default "./user.js";
+

@@ -1,21 +1,26 @@
 import express from "express";
 import mongoose from "mongoose";
+import * as dotenv from "dotenv";
 import path from "path";
 
 const app = express();
-
 import userRoutes from "./routes/user.js";
 import saucesRoutes from "./routes/sauces.js";
+import { fileURLToPath } from "url";
+
+dotenv.config();
+
 
 mongoose
   .connect(
-    "mongodb+srv://Wolat3:6Wo4Uue9XATR18Ph@projet-6.3djit5o.mongodb.net/?retryWrites=true&w=majority",
+    process.env.DB_URL ,
     { useNewUrlParser: true, useUnifiedTopology: true }
   )
   .then(() => console.log("Connexion à MongoDB réussie !"))
   .catch(() => console.log("Connexion à MongoDB échouée !"));
 
 app.use(express.json());
+
 
 // Cors
 app.use((req, res, next) => {
@@ -34,6 +39,7 @@ app.use((req, res, next) => {
 app.use("/api/auth", userRoutes);
 app.use("/api/sauces", saucesRoutes);
 // Chemin d'accés aux images
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 app.use("/images", express.static(path.join(__dirname, "images")));
 
-export default "app.js";
+export default app;

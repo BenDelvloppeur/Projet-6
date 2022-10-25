@@ -11,7 +11,7 @@ import fs from "fs";
 
 // Permet de créer une nouvelle sauce
 
-export function createSauce(req, res, next) {
+export const createSauce = (req, res, next) => {
   // On stocke les données envoyées par le front-end sous forme de form-data dans une variable en les transformant en objet js
   const sauceObject = JSON.parse(req.body.sauce);
   // On supprime l'id généré automatiquement et envoyé par le front-end. L'id de la sauce est créé par la base MongoDB lors de la création dans la base
@@ -47,11 +47,11 @@ export function createSauce(req, res, next) {
   //res.writeHead( 400, '{"message":"Format des champs du formulaire sauce ne validant pas le middleware sauceValidation"}', {'content-type' : 'application/json'});
   //res.end('Format des champs du formulaire invalide');
   //})
-}
+};
 
 // Permet de modifier une sauce
 
-export function modifySauce(req, res, next) {
+export const modifySauce = (req, res, next) => {
   let sauceObject = {};
   req.file
     ? // Si la modification contient une image => Utilisation de l'opérateur ternaire comme structure conditionnelle.
@@ -94,11 +94,11 @@ export function modifySauce(req, res, next) {
         error,
       })
     );
-}
+};
 
 // Permet de supprimer la sauce
 
-export function deleteSauce(req, res, next) {
+export const deleteSauce = (req, res, next) => {
   // Avant de suppr l'objet, on va le chercher pour obtenir l'url de l'image et supprimer le fichier image de la base
   Sauce.findOne({
     _id: req.params.id,
@@ -129,11 +129,11 @@ export function deleteSauce(req, res, next) {
         error,
       })
     );
-}
+};
 
 // Permet de récupérer une seule sauce, identifiée par son id depuis la base MongoDB
 
-export function getOneSauce(req, res, next) {
+export const getOneSauce = (req, res, next) => {
   // On utilise la méthode findOne et on lui passe l'objet de comparaison, on veut que l'id de la sauce soit le même que le paramètre de requête
   Sauce.findOne({
     _id: req.params.id,
@@ -146,11 +146,11 @@ export function getOneSauce(req, res, next) {
         error,
       })
     );
-}
+};
 
 // Permet de récuperer toutes les sauces de la base MongoDB
 
-export function getAllSauce(req, res, next) {
+export const getAllSauce = (req, res, next) => {
   // On utilise la méthode find pour obtenir la liste complète des sauces trouvées dans la base, l'array de toutes les sauves de la base de données
   Sauce.find()
     // Si OK on retourne un tableau de toutes les données
@@ -161,11 +161,11 @@ export function getAllSauce(req, res, next) {
         error,
       })
     );
-}
+};
 
 // Permet de "liker"ou "dislaker" une sauce
 
-export function likedSauce(req, res, next) {
+export const likedSauce = (req, res, next) => {
   // Pour la route READ = Ajout/suppression d'un like / dislike à une sauce
   // Like présent dans le body
   let like = req.body.like;
@@ -292,6 +292,5 @@ export function likedSauce(req, res, next) {
         })
       );
   }
-}
+};
 
-export default "./sauces";

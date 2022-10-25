@@ -4,31 +4,26 @@ const router = express.Router();
 import auth from "../middleware/auth.js";
 import multer from "../middleware/multer-config.js";
 
-import sauceCtrl from "../controller/sauces.js";
+import {
+  getAllSauce,
+  getOneSauce,
+  createSauce,
+  deleteSauce,
+  modifySauce,
+  likedSauce,
+} from "../controller/sauces.js";
 
-// router.get("/", auth, sauceCtrl.getAllSauce);
-router.get("/", function (req, res) {
-  auth, sauceCtrl.getAllSauce;
-});
-// router.get("/:id", auth, sauceCtrl.getOneSauce);
-router.get("/id", function (req, res) {
-  auth, sauceCtrl.getOneSauce;
-});
-// router.post("/", auth, multer, sauceCtrl.createSauce);
-router.post("/", function (req, res) {
-  auth, multer, sauceCtrl.createSauce;
-});
-// router.put("/:id", auth, multer, sauceCtrl.modifySauce);
-router.put("/:id", function (req, res) {
-  auth, multer, sauceCtrl.modifySauce;
-});
-// router.delete("/:id", auth, sauceCtrl.deleteSauce);
-router.delete("/:id", function (req, res) {
-  auth, sauceCtrl.deleteSauce;
-});
-// router.post("/:id/like", auth, sauceCtrl.likedSauce);
-router.post("/:id/like", function (req, res) {
-  auth, sauceCtrl.likedSauce;
-});
+// router.get("/", auth, getAllSauce);
+router.get("/", auth, getAllSauce);
+// router.get("/:id", auth, getOneSauce);
+router.get("/:id", auth, getOneSauce);
+// router.post("/", auth, multer, createSauce);
+router.post("/", auth, multer, createSauce);
+// router.put("/:id", auth, multer, modifySauce);
+router.put("/:id", auth, multer, modifySauce);
+// router.delete("/:id", auth, deleteSauce);
+router.delete("/:id", auth, deleteSauce);
+// router.post("/:id/like", auth, likedSauce);
+router.post("/:id/like", auth, likedSauce);
 
 export default router;

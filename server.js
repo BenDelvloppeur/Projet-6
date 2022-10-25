@@ -16,7 +16,6 @@ const normalizePort = (val) => {
 // la fonction normalizePort renvoie un port valide, qu'il soit fourni sous la forme d'un numéro ou d'une chaîne ;
 
 const port = normalizePort(process.env.PORT || "3000");
-app.set("port", port);
 
 // la fonction errorHandler  recherche les différentes erreurs et les gères de manière appropriée. Elle est ensuite enregistrée dans le serveur ;
 const errorHandler = (error) => {
@@ -43,10 +42,10 @@ const errorHandler = (error) => {
 const server = http.createServer(app);
 
 server.on("error", errorHandler);
-server.on("listening", () => {
-  const address = server.address();
-  const bind = typeof address === "string" ? "pipe " + address : "port " + port;
-  console.log("Listening on " + bind);
-});
+// server.on("listening", () => {
+//   const address = server.address();
+//   const bind = typeof address === "string" ? "pipe " + address : "port " + port;
+//   console.log("Listening on " + bind);
+// });
 
-server.listen(port);
+server.listen(port, () => console.log(`Serveur connecté au port ${port}`));

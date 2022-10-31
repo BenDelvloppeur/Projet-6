@@ -1,10 +1,5 @@
-// On prend toute la logique métier pour la déporter dans le fichier sauce.js de controllers
-// On ne garde que la logique de routing dans le fichier sauces.js du router. On importe aussi le model Sauce
-// On a ajouté le controller sauce avec une constante sauceCtrl dans le fichier sauce.js du router
 
 // Récupération du modèle créé grâce à la fonction schéma de mongoose
-
-// Récupération du modèle 'Sauces'
 import Sauce from "../models/Sauces.js";
 // Récupération du module 'file system' de Node permettant de gérer ici les téléchargements et modifications d'images
 import fs from "fs";

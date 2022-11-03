@@ -6,7 +6,7 @@ import jwt from "jsonwebtoken";
 import * as dotenv from "dotenv";
 
 // On récupère notre model User ,créer avec le schéma mongoose
-import User from "../models/User.js";
+import User from "../models/user.js";
 
 dotenv.config();
 

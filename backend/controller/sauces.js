@@ -1,11 +1,14 @@
-
 // Récupération du modèle créé grâce à la fonction schéma de mongoose
-import Sauce from "../models/Sauces.js";
+import Sauce from "../models/sauces.js";
 // Récupération du module 'file system' de Node permettant de gérer ici les téléchargements et modifications d'images
 import fs from "fs";
 
 // Permet de créer une nouvelle sauce
 
+/* 
+  @params req object 
+  @return object type status, json
+*/
 export const createSauce = (req, res, next) => {
   // On stocke les données envoyées par le front-end sous forme de form-data dans une variable en les transformant en objet js
   const sauceObject = JSON.parse(req.body.sauce);
@@ -288,4 +291,3 @@ export const likedSauce = (req, res, next) => {
       );
   }
 };
-

@@ -5,7 +5,7 @@ import fs from "fs";
 
 // Permet de créer une nouvelle sauce
 
-/* 
+/* Tips mentor
   @params req object 
   @return object type status, json
 */
@@ -41,10 +41,6 @@ export const createSauce = (req, res, next) => {
         error,
       })
     );
-  //.catch(error => {
-  //res.writeHead( 400, '{"message":"Format des champs du formulaire sauce ne validant pas le middleware sauceValidation"}', {'content-type' : 'application/json'});
-  //res.end('Format des champs du formulaire invalide');
-  //})
 };
 
 // Permet de modifier une sauce
@@ -67,7 +63,7 @@ export const modifySauce = (req, res, next) => {
           req.file.filename
         }`,
       }))
-    : // Opérateur ternaire équivalent à if() {} else {} => condition ? Instruction si vrai : Instruction si faux
+    : // Instruction si vrai : Instruction si faux
       // Si la modification ne contient pas de nouvelle image
       (sauceObject = {
         ...req.body,
